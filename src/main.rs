@@ -37,8 +37,9 @@ fn main() {
             while rand::random::<u32>() % 8 != 0 {}
             unsafe {
                 *X = 1;
-                asm!("mfence" ::: "memory" : "volatile");
-                // asm!("" ::: "memory" : "volatile");
+                // swap these two lines for a `mfence` and not just compiler reordering
+                // asm!("mfence" ::: "memory" : "volatile");
+                asm!("" ::: "memory" : "volatile");
                 *r1 = *Y;
             }
             end1.wait();
@@ -59,8 +60,9 @@ fn main() {
             while rand::random::<u32>() % 8 != 0 {}
             unsafe {
                 *Y = 1;
-                asm!("mfence" ::: "memory" : "volatile");
-                // asm!("" ::: "memory" : "volatile");
+                // swap these two lines for a `mfence` and not just compiler reordering
+                // asm!("mfence" ::: "memory" : "volatile");
+                asm!("" ::: "memory" : "volatile");
                 *r2 = *X;
             }
             end2.wait();
