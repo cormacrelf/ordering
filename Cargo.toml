@@ -1,0 +1,7 @@
+[package]
+name = "ordering"
+version = "0.1.0"
+authors = ["Cormac Relf <cormacrelf@me.com>"]
+
+[dependencies]
+rand = "0.3"
